@@ -1,3 +1,7 @@
+from PyQt6.QtWidgets import QApplication
+import sys
+
+from Ui.AdminPage import AdminPage
 from Ui.Meniu import UI
 from Repository.StudentRepo import StudentRepository
 from Domain.StudentValidator import StudentValidator
@@ -21,5 +25,8 @@ validator2 = NotaValidator()
 service = StudentService(repo, validator)
 service1 = DisciplineService(repo1, validator1)
 service2 = NotaService(repo2, validator2, repo, repo1)
-console = UI(service, service1, service2)
-console.run()
+app = QApplication(sys.argv)
+paginaPrincipala = AdminPage(service, service1, service2)
+paginaPrincipala.show()
+sys.exit(app.exec())
+
